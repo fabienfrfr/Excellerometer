@@ -24,6 +24,7 @@ Inertia measurement to behaviour
 ###### Attribution required : Fabien Furfaro (CC 4.0 BY NC ND SA)
 
 Tutorial in :
+
 	- https://www.peterspython.com/fr/blog/developpement-d-applications-ubuntu-touch-avec-python-avec-pyotherside
 	- https://forums.ubports.com/topic/5525/python-examples (pavelprosto94)
 	- https://api-docs.ubports.com/sdk/apps/qml/QtSensors/Qt%20Sensors%20C++%20Overview.html
