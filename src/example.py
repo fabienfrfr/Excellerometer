@@ -18,4 +18,4 @@ a=0
 def speak(text):
     global a
     a+=1
-    return text+"\n "+str(a-1)+" click"
+    return text+"\n "+str(a-1)+" click : "

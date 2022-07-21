@@ -21,7 +21,7 @@ import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
 import io.thp.pyotherside 1.4
 
-# adding sensor
+//adding sensor
 import QtPositioning 5.2
 import QtSensors 5.2
 
@@ -33,6 +33,10 @@ MainView {
 
     width: units.gu(45)
     height: units.gu(75)
+
+    function round(number, digits) {
+        return Math.round(number*Math.pow(10, digits))/Math.pow(10, digits);
+    }
 
     Page {
         id:main
@@ -49,7 +53,7 @@ MainView {
                 top: header.bottom
                 left: parent.left
                 right: parent.right
-                bottom: parent.bottom
+                //bottom: parent.bottom
             }
             text: 'Click me'
             verticalAlignment: Label.AlignVCenter
@@ -59,7 +63,7 @@ MainView {
             MouseArea {
             anchors.fill: parent
             hoverEnabled: true
-            
+
             onPressed: {
                 //connect and execute the speak function
                 python.call('example.speak', ['Hello World!'], function ( result ) {
@@ -68,7 +72,34 @@ MainView {
             }
             }
         }
+
+        Label {
+            id: label2
+            anchors {
+                top: label1.bottom
+                left: parent.left
+                right: parent.right
+                bottom: parent.bottom
+            }
+
+            //sensor access
+            visible: accelerometer.connectedToBackend
+            Accelerometer {
+                id: accelerometer
+                active: true
+            }
+
+            //title: i18n.tr('z (m/s/s)') // doesn't exist in Label !
+            text: accelerometer.reading != null ? round(accelerometer.reading.x,3) : '-'
+            verticalAlignment: Label.AlignVCenter
+            horizontalAlignment: Label.AlignHCenter
+
+
+        }
+
     }
+
+
 
     Python {
         id: python

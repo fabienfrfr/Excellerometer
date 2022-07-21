@@ -135,11 +135,44 @@ Adding modules (in Main.qml)
 
 #### Bonus Part.
 
+Docker is a tools to virtualize OS-level application/service, it's adapted for container compatibilities in all platforms. (inspired of linux)
+
+Tuto in : https://github.com/ttwthomas/apprendre-docker
+
 Basic docker command :
 ```bash
-
+# lanch container
+docker run container_img
+# specific container
+docker run hello-world
+docker run -it ubuntu bash # it == interactive (for launch bash here)
+# list of container
+docker ps 
+# delete container
+docker rm container_id # or exit in docker bash
 ```
 
+Create image in docker (python) :
+```bash
+## create requirements.txt (& app.py) file :
+Flask
+Redis
+## create "Dockerfile" with :
+FROM python:2.7-slim
+WORKDIR /app
+COPY . /app
+RUN pip install -r requirements.txt
+EXPOSE 80
+ENV NOM coca
+CMD ["python", "app.py"]
+## build
+docker build -t image_name .
+## launch docker (here it's app)
+docker run -p 80:80 image_name
+```
+--> here, we don't need python of Flask+Redis installed in computer to works.
+
+Docker Compose :
 ```bash
 
 ```
