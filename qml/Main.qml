@@ -34,6 +34,7 @@ MainView {
     width: units.gu(45)
     height: units.gu(75)
 
+    // Qt function
     function round(number, digits) {
         return Math.round(number*Math.pow(10, digits))/Math.pow(10, digits);
     }
@@ -56,7 +57,7 @@ MainView {
                 //bottom: parent.bottom
             }
             text: 'Click me'
-            verticalAlignment: Label.AlignVCenter
+            //verticalAlignment: Label.AlignVCenter
             horizontalAlignment: Label.AlignHCenter
             
             //create an area for handling mouse events
@@ -72,6 +73,69 @@ MainView {
             }
             }
         }
+
+        Image {
+        id: image
+        fillMode: Image.PreserveAspectFit
+        anchors {
+            top: header.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+
+            Python {
+                Component.onCompleted: {
+                addImportPath(Qt.resolvedUrl('../src/'));
+                importModule('example', function () {
+                    image.source = 'image://python/image-id-passed-from-qml';
+                });
+                }
+
+                onError: console.log('Python error: ' + traceback)
+            }
+        }
+
+        /*
+        Tabs {
+            //id: tabs
+            Tab {
+                Column {
+                    //id: column1
+                    spacing: units.gu(1)
+                    anchors {
+                        margins: units.gu(2)
+                        fill: parent
+                        //top: label1.bottom
+                        //left: parent.left
+                        //right: parent.right
+                        //bottom: parent.bottom
+                    }
+                    // sensor access
+                    visible: accelerometer.connectedToBackend
+                    Accelerometer {
+                        id: accelerometer
+                        active: true
+                    // row
+                    }
+                    RowField {
+                        title: i18n.tr('x (m/s/s)')
+                        text: accelerometer.reading != null ? round(accelerometer.reading.x,1) : '-'
+                    }
+                    RowField {
+                        title: i18n.tr('y (m/s/s)')
+                        text: accelerometer.reading != null ? round(accelerometer.reading.y,1) : '-'
+                    }
+                    RowField {
+                        title: i18n.tr('z (m/s/s)')
+                        text: accelerometer.reading != null ? round(accelerometer.reading.z,1) : '-'
+                    }
+                    //verticalAlignment: Label.AlignVCenter
+                    //horizontalAlignment: Label.AlignHCenter
+                }
+            }
+        }*/
+
 
         Label {
             id: label2
@@ -91,9 +155,9 @@ MainView {
 
             //title: i18n.tr('z (m/s/s)') // doesn't exist in Label !
             text: accelerometer.reading != null ? round(accelerometer.reading.x,3) : '-'
+
             verticalAlignment: Label.AlignVCenter
             horizontalAlignment: Label.AlignHCenter
-
 
         }
 
