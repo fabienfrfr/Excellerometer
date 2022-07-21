@@ -25,10 +25,10 @@ Inertia measurement to behaviour
 
 Tutorial in :
 
-	- https://www.peterspython.com/fr/blog/developpement-d-applications-ubuntu-touch-avec-python-avec-pyotherside
-	- https://forums.ubports.com/topic/5525/python-examples (pavelprosto94)
-	- https://api-docs.ubports.com/sdk/apps/qml/QtSensors/Qt%20Sensors%20C++%20Overview.html
-	- https://open-store.io/ (if opensource code, exemple : https://github.com/balcy/SensorsStatus)
+- https://www.peterspython.com/fr/blog/developpement-d-applications-ubuntu-touch-avec-python-avec-pyotherside
+- https://forums.ubports.com/topic/5525/python-examples (pavelprosto94)
+- https://api-docs.ubports.com/sdk/apps/qml/QtSensors/Qt%20Sensors%20C++%20Overview.html
+- https://open-store.io/ (if opensource code, exemple : https://github.com/balcy/SensorsStatus)
 
 #### Part Clickable
 
