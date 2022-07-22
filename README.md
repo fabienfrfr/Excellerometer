@@ -32,9 +32,20 @@ Tutorial in :
 
 #### Part Clickable
 
+Need openGL, lbgl, glx (qt&qtmake) :
+
+```bash
+sudo apt-get install libglX #hit double **Tab** output to see X
+sudo apt-get install -y qt5-qmake
+sudo apt install qtcreator
+sudo apt-get install qt5-default # if you don't find (obsolete), use synaptic package manager to see the new name (or apt list | grep qt5)
+sudo apt install qtbase5-dev qtchooser qtbase5-dev-tools
+sudo apt-get install build-essential libgl1-mesa-dev
+```
+
 Installation (with docker possibilities - virtual env - DevOps) :
 ```bash
-sudo apt install docker.io adb git python3 python3-pip python3-setuptools python3-venv
+sudo apt install docker.io adb git python3 python3-pip python3-setuptools python3-venv android-tools-adb android-tools-fastboot
 pip3 install clickable-ut # don't install "clickable, it's different ! uninstall otherwise"
 echo PATH=$PATH:~/.local/bin>>~/.bashrc 
 # if virtual env (alternative) :
@@ -56,20 +67,29 @@ Be careful, the directory position is absolute in the CMakeCache.txt
 **Show** in desktop (installing dependancy docker) :
 ```bash
 cd appname
-sudo clickable desktop --no-nvidia
+sudo clickable desktop --no-nvidia # if GLX problem, use X server X.org driver ! For me, it's works (my nvidia gpu is very old..), no need "--no" after that
 ```
 
-Need lbgl, glx (qt&qtmake) :
+Otherwise, screencasting :
 
-```bash
-sudo apt-get install libglX #hit double **Tab** output to see X
-sudo apt-get install -y qt5-qmake
-sudo apt install qtcreator
-```
+    - sudo apt install mplayer
+    - adb exec-out timeout 120 mirscreencast -m /run/mir_socket --stdout --cap-interval 2 -s 384 640 | mplayer -demuxer rawvideo -rawvideo w=384:h=640:format=rgba -
+
+    - sudo apt-get install phablet-tools # very old !
+
+Or emulation :
+
+    - sudo apt install qemu qemu-kvm qemu-system qemu-utils kmod
+    - sudo apt install libvirt-clients libvirt-daemon-system virtinst
+        - reboot and activate virtualization in Bios
+    - snap install utqemu --edge # based on snap qemu-virgil
+    - sudo snap connect utqemu:kvm
+    - utqemu start
+
 
 For nvidia : install nvidia-container in docker
 ```bash
-su # sudo passwd root (necessite caractere different !)
+su # sudo passwd root (necessite caractere different !) # if doesn't work in normal user..
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | apt-key add -
 curl -s -L https://nvidia.github.io/nvidia-docker/ubuntu20.04/nvidia-docker.list > /etc/apt/sources.list.d/nvidia-docker.list
 apt -y install nvidia-container-toolkit
