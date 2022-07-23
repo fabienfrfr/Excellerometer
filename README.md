@@ -81,20 +81,34 @@ Or emulation :
 
     - sudo apt install qemu qemu-kvm qemu-system qemu-utils kmod
     - sudo apt install libvirt-clients libvirt-daemon-system virtinst
+    - sudo apt-get install qemu virt-manager virt-viewer libvirt-bin
         - reboot and activate virtualization in Bios
     - snap install utqemu --edge # based on snap qemu-virgil
     - sudo snap connect utqemu:kvm
     - utqemu start
 
+If doesn't work, or you have nvidia without container, use VM with Xorg server :
+
+    - qemu-img create Puppy.vdi 10G
+    - qemu-system-x86_64 -boot d -cdrom Desktop/puppy.iso -m 512
+    - qemu-system-x86_64 -hda puppy.vdi
+        - run virt-manager (possible de tout faire en GUI)
+
+Transfer files to virtual machine :
+
+    - f
+
 
 For nvidia : install nvidia-container in docker
 ```bash
-su # sudo passwd root (necessite caractere different !) # if doesn't work in normal user..
-curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | apt-key add -
-curl -s -L https://nvidia.github.io/nvidia-docker/ubuntu20.04/nvidia-docker.list > /etc/apt/sources.list.d/nvidia-docker.list
-apt -y install nvidia-container-toolkit
-systemctl restart docker
-docker run --gpus all nvidia/cuda:10.1-base nvidia-smi
+#su # sudo passwd root (necessite caractere different !) # if doesn't work in normal user..
+distribution=ubuntu18.04
+
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+#docker run --gpus all nvidia/cuda:10.1-base nvidia-smi
 ```
 
 **Show** in adb device (developper mode only) :
