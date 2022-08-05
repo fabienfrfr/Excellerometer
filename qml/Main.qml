@@ -25,6 +25,9 @@ import io.thp.pyotherside 1.4
 import QtPositioning 5.2
 import QtSensors 5.2
 
+//adding sql
+import QtQuick.LocalStorage 2.0
+
 MainView {
     id: root
     objectName: 'mainView'
@@ -145,16 +148,25 @@ MainView {
                 right: parent.right
                 bottom: parent.bottom
             }
-
+            /*
             //sensor access
             visible: accelerometer.connectedToBackend
             Accelerometer {
                 id: accelerometer
                 active: true
             }
-
+            */
             //title: i18n.tr('z (m/s/s)') // doesn't exist in Label !
-            text: accelerometer.reading != null ? round(accelerometer.reading.x,3) : '-'
+            /*
+            if (accelerometer.reading != null) {
+                text: round(accelerometer.reading.x,3)
+            }
+            else {
+                text: 'no accelerometer sensor'
+            }
+            */
+            text: 'no accelerometer sensor'
+            //text: accelerometer.reading != null ? round(accelerometer.reading.x,3) : '-'
 
             verticalAlignment: Label.AlignVCenter
             horizontalAlignment: Label.AlignHCenter

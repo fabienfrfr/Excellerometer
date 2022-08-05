@@ -29,25 +29,26 @@ Tutorial in :
 - https://forums.ubports.com/topic/5525/python-examples (pavelprosto94)
 - https://api-docs.ubports.com/sdk/apps/qml/QtSensors/Qt%20Sensors%20C++%20Overview.html
 - https://open-store.io/ (if opensource code, exemple : https://github.com/balcy/SensorsStatus)
+- https://mimecar.gitbooks.io/ubuntu-touch-programming-course/content/en/chapter-05-s01.html
 
 #### Part Clickable
 
 Need openGL, lbgl, glx (qt&qtmake) :
 
 ```bash
-sudo apt-get install libglX #hit double **Tab** output to see X
-sudo apt-get install -y qt5-qmake
-sudo apt install qtcreator
+#sudo apt-get install libglX #hit double **Tab** output to see X
 sudo apt-get install qt5-default # if you don't find (obsolete), use synaptic package manager to see the new name (or apt list | grep qt5)
-sudo apt install qtbase5-dev qtchooser qtbase5-dev-tools
-sudo apt-get install build-essential libgl1-mesa-dev
+#sudo apt install qtbase5-dev qtchooser qtbase5-dev-tools
+sudo apt-get install build-essential #libgl1-mesa-dev
 ```
 
 Installation (with docker possibilities - virtual env - DevOps) :
 ```bash
 sudo apt install docker.io adb git python3 python3-pip python3-setuptools python3-venv android-tools-adb android-tools-fastboot
-pip3 install clickable-ut # don't install "clickable, it's different ! uninstall otherwise"
-echo PATH=$PATH:~/.local/bin>>~/.bashrc 
+sudo add-apt-repository ppa:bhdouglass/clickable
+sudo apt-get install clickable
+    # pip3 install clickable-ut # don't install "clickable, it's different ! uninstall otherwise"
+    #echo PATH=$PATH:~/.local/bin>>~/.bashrc 
 # if virtual env (alternative) :
 python3 -m venv .venv --system-site-packages
 source ./.venv/bin/activate
@@ -57,7 +58,10 @@ Create 1st Apps
 ```bash
 # docker (choose python & define app)
 clickable create
-
+# we need to setup docker
+cd appname
+clickable setup docker # first use
+sudo systemctl restart docker  # first use
 # if you doing sudo (tips)
 sudo chown -R username foldername
 ```
