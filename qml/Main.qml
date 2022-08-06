@@ -27,6 +27,7 @@ import QtSensors 5.2
 
 //adding sql
 import QtQuick.LocalStorage 2.0
+import "Storage.js" as Storage
 
 MainView {
     id: root
@@ -41,7 +42,23 @@ MainView {
     function round(number, digits) {
         return Math.round(number*Math.pow(10, digits))/Math.pow(10, digits);
     }
+    /*
 
+    // for sql ?
+    // Settings file is saved in ~userHome/.config/<applicationName>/<applicationName>.conf  File 
+    Settings {
+        id:settings
+        // flag to show or not the App configuration popup
+        property bool isFirstUse : true;
+    }
+
+    Component {
+        id: appConfigurationDialog
+        AppConfiguration{}
+    }
+    */
+
+    // main page
     Page {
         id:main
         anchors.fill: parent
@@ -172,7 +189,27 @@ MainView {
             horizontalAlignment: Label.AlignHCenter
 
         }
+        /*
+        /// sql test
+        // code executed on application start-up
+        Component.onCompleted: {
 
+           if(settings.isFirstUse)
+           {
+              Storage.createTables();
+              Storage.insertDefaultConfigValues();
+
+              PopupUtils.open(appConfigurationDialog);
+              //to skyp database creation next application start-up
+              settings.isFirstUse = false;
+
+           }else{
+              // load saved configuration
+              header.title = appLicationTitle+" for city: "+Storage.getConfigParamValue('city');
+              temperatureUnitLabel.text = Storage.getConfigParamValue('temperatureUnit');
+           }
+        }
+        */
     }
 
 
