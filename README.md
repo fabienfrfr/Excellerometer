@@ -29,7 +29,9 @@ Tutorial in :
 - https://forums.ubports.com/topic/5525/python-examples (pavelprosto94)
 - https://api-docs.ubports.com/sdk/apps/qml/QtSensors/Qt%20Sensors%20C++%20Overview.html
 - https://open-store.io/ (if opensource code, exemple : https://github.com/balcy/SensorsStatus)
-- https://mimecar.gitbooks.io/ubuntu-touch-programming-course/content/en/chapter-05-s01.html
+- https://mimecar.gitbooks.io/ubuntu-touch-programming-course/content/en/chapter-05-s01.html (weatherrecorder)
+    - https://github.com/mimecar/ubuntu-touch-programming-course-src
+- https://docs.innerzaurus.com/en/latest/tools/clickable.html
 
 #### Part Clickable
 
@@ -61,7 +63,7 @@ clickable create
 # we need to setup docker
 cd appname
 clickable setup docker # first use
-sudo systemctl restart docker  # first use
+sudo systemctl restart docker  # first use (that install image for docker)
 # if you doing sudo (tips)
 sudo chown -R username foldername
 ```
