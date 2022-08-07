@@ -2,12 +2,14 @@
 
 App to analyse accelerometer and gyroscope in Ubports OS (for smartphone).
 
-Input :
+*Input :*
+
 - Accelerometer (<=> fixed mechanical spring : measurment movement)
 - Gyroscope (<=> oscillated mecanical spring with angles : measurement deviation caused by Coriolis)
 
 
-Methods :
+*Methods :*
+
 - Times Series (fondementals)
 - EWM (smooth)
 - Fourier (component)
@@ -17,9 +19,16 @@ Methods :
 - LSTM
 - CNN
 
-Output :
+*Output :*
+
 Inertia measurement to behaviour
 
+**Inspiration :**
+
+- https://github.com/JanderHungrige/PumpSensor (LSTM of physics sensor)
+- https://github.com/mabelc/EDA_medium (EDA of accelerometer)
+- https://towardsdatascience.com/feature-engineering-on-time-series-data-transforming-signal-data-of-a-smartphone-accelerometer-for-72cbe34b8a60
+- https://github.com/kaiolae/wcci2018_prediction_tutorial (complete course)
 
 ###### Attribution required : Fabien Furfaro (CC 4.0 BY NC ND SA)
 
@@ -28,14 +37,14 @@ Tutorial in :
 - https://www.peterspython.com/fr/blog/developpement-d-applications-ubuntu-touch-avec-python-avec-pyotherside
 - https://forums.ubports.com/topic/5525/python-examples (pavelprosto94)
 - https://api-docs.ubports.com/sdk/apps/qml/QtSensors/Qt%20Sensors%20C++%20Overview.html
-- https://open-store.io/ (if opensource code, exemple : https://github.com/balcy/SensorsStatus)
+- https://open-store.io/ (if opensource code, exemple : https://github.com/balcy/SensorsStatus, https://gitlab.com/ubports/development/apps/clock-app)
 - https://mimecar.gitbooks.io/ubuntu-touch-programming-course/content/en/chapter-05-s01.html (weatherrecorder)
     - https://github.com/mimecar/ubuntu-touch-programming-course-src
 - https://docs.innerzaurus.com/en/latest/tools/clickable.html
 
 #### Part Clickable
 
-Need openGL, lbgl, glx (qt&qtmake) :
+Prerequiere :
 
 ```bash
 #sudo apt-get install libglX #hit double **Tab** output to see X
@@ -82,6 +91,14 @@ Otherwise, screencasting :
     - adb exec-out timeout 120 mirscreencast -m /run/mir_socket --stdout --cap-interval 2 -s 384 640 | mplayer -demuxer rawvideo -rawvideo w=384:h=640:format=rgba -
 
     - sudo apt-get install phablet-tools # very old !
+
+Or qml testing :
+
+    - sudo apt intall qml
+    - sudo apt -y install qml-module-* #QtQuick, QtControl, ...
+    - sudo snap install ubuntu-ui-toolkit # for Xenial : deb http://fr.archive.ubuntu.com/ubuntu xenial main universe (add in sudo gedit /etc/apt/sources.list)
+        - sudo apt-get install qml-module-ubuntu-components
+    - qml Main.qml
 
 Or emulation :
 
