@@ -29,6 +29,9 @@ import QtSensors 5.2
 import QtQuick.LocalStorage 2.0
 import "Storage.js" as Storage
 
+//backend (service)
+import QtSystemInfo 5.0
+
 MainView {
     id: root
     objectName: 'mainView'
